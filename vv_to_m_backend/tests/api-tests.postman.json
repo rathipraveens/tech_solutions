@@ -1,0 +1,64 @@
+{
+  "variables": [],
+  "info": {
+    "name": "vv_to_m backend test",
+    "_postman_id": "",
+    "description": "Collection for testing the vv_to_m backend API",
+    "schema": ""
+  },
+  
+  "item": [{
+      "description": "",
+      "item": [
+	  {
+          "name": "farmers",
+          "event": [{
+            "listen": "test",
+            "script": {
+              "type": "text/javascript",
+              "exec": [
+                "if (!(environment.isIntegrationTest)) {",
+                "var responseJSON = JSON.parse(responseBody);",
+                "",
+                "tests['Response contains \"farmer\" property'] = responseJSON.hasOwnProperty('farmer');",
+                "",
+                "var farmer = responseJSON.farmer || {};",
+                "",
+				
+                "tests['Farmer has \"village_name\" property'] = farmer.hasOwnProperty('village_name');",
+                "tests['farmer has \"farmer_name\" property'] = farmer.hasOwnProperty('farmer_name');",
+                "tests['farmer has \"phone_number\" property'] = farmer.hasOwnProperty('phone_number');",
+				"tests['farmer has \"age\" property'] = farmer.hasOwnProperty('age');",
+                "tests['farmer has \"gender\" property'] = farmer.hasOwnProperty('gender');",
+                "tests['farmer has \"picture\" property'] = farmer.hasOwnProperty('picture');",
+								
+                "}",
+                ""
+              ]
+            }
+          }],
+          "request": {
+            "url": "{{apiUrl}}/farmers",
+            "method": "POST",
+            "header": [{
+                "key": "Content-Type",
+                "value": "application/json",
+                "description": ""
+              } 
+            ],
+            "body": {
+              "mode": "raw",
+			  "raw" : 
+			          "{  \"village_name\" : \"Dispur\",
+                          \"farmer_name\" : \"AmarSingh\",
+                           \"phone_number\" : 9911465684,
+                           \"age\": 57,
+                           \"gender\": \"Male\",
+                           \"picture\" : \" \"  }"
+			  			  
+            },
+            "description": ""
+          },
+          "response": []
+        }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "",
+  "name": "vv_to_m backend test",
+  "values": [{
+    "enabled": true,
+    "key": "apiUrl",
+    "value": "http://localhost:3000/api",
+    "type": "text"
+  }],
+  "timestamp": ,
+  "_postman_variable_scope": "environment",
+  "_postman_exported_at": "2020-08-10",
+  "_postman_exported_using": "Postman/5.2.0"
+}

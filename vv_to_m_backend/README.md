@@ -1,29 +1,38 @@
-village vegitables to market system backend 
-===========================================
+village vegitables to market system
+===================================
 
-1. after taking the code from github please run below commands to build , test , deploy & run steps --
-$npm install
-$npm test 
-$npm start 
-
-2. Overview of the system 
-
-2.1. database work 
-$$$$$$$$$$$$$$$$$$
+1. database work 
+$$$$$$$$$$$$$$$$
 
 a. use vv_to_m
 
 Master data --->
 
 b. 
-db.farmer.insertMany( [
-{"village_name":"Amarpur1","farmer_name": "Deendayal Singh1", "phone_no" : 9911465680 , "age" : 40, "gender" : "male" , "picture": "" }
-] )
+db.villages.insert( {
+"villages": ["Amarpur1", "Amarpur2"]
+} )
 
 c. 
-db.village_vetiable.insertMany( [
-{"village_name":"Amarpur1","vegitables": ["Aaloo1, Gaubhi1", "Paalak1"] }
+db.farmer.insertMany( [
+{"village_name":"Amarpur1","farmer_name": "Deendayal Singh1", "phone_no" : 9911465680 , "age" : 40, "gender" : "male" , "picture": "" },
+{"village_name":"Amarpur1","farmer_name": "Deendayal Singh2", "phone_no" : 9911465681 , "age" : 41, "gender" : "female" , "picture": "" },
+{"village_name":"Amarpur1","farmer_name": "Deendayal Singh3", "phone_no" : 9911465682 , "age" : 42, "gender" : "male" , "picture": "" },
+{"village_name":"Amarpur1","farmer_name": "Deendayal Singh4", "phone_no" : 9911465683 , "age" : 43, "gender" : "female" , "picture": "" },
+{"village_name":"Amarpur1","farmer_name": "Deendayal Singh5", "phone_no" : 9911465684 , "age" : 44, "gender" : "male" , "picture": "" },
+{"village_name":"Amarpur2","farmer_name": "Deendayal Singh6", "phone_no" : 9911465685 , "age" : 45, "gender" : "female" , "picture": "" },
+{"village_name":"Amarpur2","farmer_name": "Deendayal Singh7", "phone_no" : 9911465686 , "age" : 46, "gender" : "male" , "picture": "" },
+{"village_name":"Amarpur2","farmer_name": "Deendayal Singh8", "phone_no" : 9911465687 , "age" : 47, "gender" : "female" , "picture": "" },
+{"village_name":"Amarpur2","farmer_name": "Deendayal Singh9", "phone_no" : 9911465688 , "age" : 48, "gender" : "male" , "picture": "" },
+{"village_name":"Amarpur2","farmer_name": "Deendayal Singh10", "phone_no" : 9911465689 , "age" : 49, "gender" : "female" , "picture":  "" }
 ] )
+
+d.
+
+db.vvetiables.insertMany( 
+{"vegitables": ["Aaloo1, Gaubhi1", "Paalak1"] }
+ )
+
 
 Transactional data ( sample records while creating collections )--->
 
@@ -39,22 +48,48 @@ db.vegitable.insert(
  )
 
 
-2.2. Backend work ---
+2. Backend work ---
 $$$$$$$$$$$$$$$
-a. add farmer post server 
-http://localhost:3000/api/farmers -- POST  -- blank space in name & village
+a. villages names 
+http://localhost:3000/api/farmers/village_names -- GET ( done )
 
-{  "village_name" : "Dispur",
-    "farmer_name" : "AmarSingh",
-    "phone_number" : 9911465684,
-    "age": 57,
-    "gender": "Male",
-    "picture" : " "  }
+b. vegitable names 
+http://localhost:3000/api/vegitables/name_list -- GET ( done )
+
+c. farmers name 
+http://localhost:3000/api/farmers/farmer_names -- GET ( done )
+------------------------------------------------------------------------------------------------
+d. add vegitable
+http://localhost:3000/api/vegitables   -- POST  --  ( done )
+{
+    "village_name": "Amarpur2", 
+   "farmer_name":  "Deendayal Singh8", 
+   "phone_number" : 9911306513,
+    "vegitables": [ { "veg_name" :"Aaloo1", "veg_quantity" : 10 }, { "veg_name" :"Gaubhi1", "veg_quantity" : 25 } ] 
+}
+ 
+e. vegitables list 
+http://localhost:3000/api/vegitables/list  -- GET  ( done )
+
+Note:- Below 2 sections are copy - paste of this section i.e. vegitable section , so below 2 sections may be left.
+--------------------------------------------------------------------------------------------------
+
+f. add farmer post server 
+http://localhost:3000/api/farmers -- POST  -- ( done )
+
+{  
+    "village_name" : "Amarpur4",
+    "farmer_name" : "Amar Singh 4",
+    "phone_no" : 9911306512,
+    "age": 53,
+    "gender": "female",
+    "picture" : " "  
+}
 	
-b. add vegitable
-http://localhost:3000/api/vegitables   -- POST  -- vegitables are not getting inserted  
-
-c. add transport 
+g. farmers detailed list 
+http://localhost:3000/api/farmers/list/   -- GET  ( done )
+---------------------------------------------------------------------------------------------------
+h. add transport 
 http://localhost:3000/api/transports -- POST  -- date is not getting inserted 
 
 {  " trans_date" :  "10-7-2020",  
@@ -62,10 +97,12 @@ http://localhost:3000/api/transports -- POST  -- date is not getting inserted
   "vehicle_number" : "HR26AH3510" , 
   "driver_name" :  "Deenu" ,
   "amount_paid" :   0   }
-	
-d. farmers list 
-http://localhost:3000/api/farmers/list   -- GET
 
-e. vegitables list 
-http://localhost:3000/api/vegitables/list    -- GET
+i. transport list 
+http://localhost:3000/api/transport/list  -- GET  -- still to build
+
+	
+
+
+
 
